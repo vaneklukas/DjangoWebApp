@@ -41,7 +41,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{% url 'dashboard' %}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Přehled</span></a>
       </li>
@@ -54,12 +54,12 @@
         Trénink
       </div>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{% url 'indTraining' %}">
           <i class="fas fa-fw fa-user-circle"></i>
           <span>Individuální pokuta</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{% url 'teamTraining' %}">
           <i class="fas fa-fw fa-users"></i>
           <span>Skupinová pokuta</span></a>
       </li>
@@ -72,12 +72,12 @@
         Zápas
       </div>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{% url 'indMatch' %}">
           <i class="fas fa-fw fa-user-circle"></i>
           <span>Individuální pokuta</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{% url 'teamMatch' %}">
           <i class="fas fa-fw fa-users"></i>
           <span>Skupinová pokuta</span></a>
       </li>
@@ -89,7 +89,11 @@
       <div class="sidebar-heading">
         Administrace
       </div>
-
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'listview' %}">
+          <i class="fas fa-fw fa-users"></i>
+          <span>Přehled pokut</span></a>
+      </li>
       <!-- Nav Item - Pages Collapse Menu Vyúčtování-->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" 

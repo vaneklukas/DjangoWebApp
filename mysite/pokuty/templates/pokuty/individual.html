@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid">
+    <form action="{% url 'indsave' %}" method="POST">
+    {% csrf_token %} 
+        <label for="date">Vyber datum:</label>
+        <input type="date" id="date" name="date">
+        <label for="user">Vyber hráče:</label>
+        <select class="dropdown-header" name="user" id="user" required=True>
+            <option class="dropdown-item" value="">--Prosím vyber hráče--</option> 
+            {% for user in users %}
+            <option class="dropdown-item" value={{user.id}} > {{user.first_name}} {{user.last_name}}</option>   
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        {% for x in pokuty  %}
+            <input class="custom-checkbox" type="checkbox" name="penalty" value={{x.id}}> {{x.name}}</input>
+            <br>
+        {% endfor %}
+        <input type="submit" class="btn-block" value="Uložit"/>
+    </form>
+</div>
+
+
+ {% endblock %}

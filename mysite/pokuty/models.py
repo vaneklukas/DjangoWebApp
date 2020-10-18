@@ -11,6 +11,7 @@ class Penalty(models.Model):
 
 class PenaltyRecord(models.Model):
     penaltyDate = models.DateField()
+    userId = models.PositiveSmallIntegerField(default=1)
     user = models.CharField(max_length=200, default=None)
     penaltyName = models.CharField(max_length=200)
     penaltyPrice = models.PositiveSmallIntegerField()
