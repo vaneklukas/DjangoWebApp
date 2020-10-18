@@ -2,7 +2,38 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+##Evidence
+class Penalty(models.Model):
+    name = models.CharField(max_length=200)
+    price = models.PositiveSmallIntegerField()
+    teamPenalty = models.BooleanField()
+    trainingPenalty = models.BooleanField()
 
+class PenaltyRecord(models.Model):
+    penaltyDate = models.DateField()
+    user = models.CharField(max_length=100)
+    penaltyName = models.CharField(max_length=200)
+    penaltyPrice = models.PositiveSmallIntegerField()
+    payed = models.BooleanField()
+
+class Fridge(models.Model):
+    fridgeDate = models.DateField()
+    user = models.CharField(max_length=100)
+    penaltyPrice = models.PositiveSmallIntegerField()
+
+class Income(models.Model):
+    incomeDate = models.DateField()
+    user = models.CharField(max_length=100)
+    price = models.PositiveSmallIntegerField()
+
+class Expenses(models.Model):
+    expenseDate = models.DateField()
+    reason = models.CharField(max_length=100)
+    price = models.PositiveSmallIntegerField()
+
+
+
+##amdmin
 class CustomUserManager(BaseUserManager):
     """Define a model manager for User model with no username field."""
 
@@ -32,7 +63,6 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
 
         return self._create_user(email, password, **extra_fields)
-
 
 class CustomUser(AbstractUser):
     username = None

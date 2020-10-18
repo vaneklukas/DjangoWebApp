@@ -1,5 +1,5 @@
 from django.conf.urls import url, include 
-from pokuty.views import dashboard, register, UzivatelViewLogin
+from pokuty.views import dashboard, register, UzivatelViewLogin, userlist
 from django.urls import path
 
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     url(r"^register/", register, name="register"),
     url(r"^registration/login2", register, name="login"),
     path("login/", UzivatelViewLogin.as_view(), name = "login"),
+    url(r"^userlist/", userlist, name="userlist"),
 ]
