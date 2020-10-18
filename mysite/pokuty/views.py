@@ -5,12 +5,12 @@ from django.views import generic
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import CustomUser
+from .models import CustomUser, Penalty
 
 def userlist(request):
     users=CustomUser.objects.all()
-    
-    return render(request,"pokuty/userlist.html",{'users': users})
+    pokuty = Penalty.objects.all().filter(trainingPenalty=True)
+    return render(request,"pokuty/userlist.html",{'users': users, 'pokuty':pokuty})
 
 
 

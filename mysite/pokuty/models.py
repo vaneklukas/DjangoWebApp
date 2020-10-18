@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 
 ##Evidence
 class Penalty(models.Model):
@@ -11,7 +11,7 @@ class Penalty(models.Model):
 
 class PenaltyRecord(models.Model):
     penaltyDate = models.DateField()
-    user = models.CharField(max_length=100)
+    user = models.CharField(max_length=200, default=None)
     penaltyName = models.CharField(max_length=200)
     penaltyPrice = models.PositiveSmallIntegerField()
     payed = models.BooleanField()
@@ -26,7 +26,7 @@ class Income(models.Model):
     user = models.CharField(max_length=100)
     price = models.PositiveSmallIntegerField()
 
-class Expenses(models.Model):
+class Expense(models.Model):
     expenseDate = models.DateField()
     reason = models.CharField(max_length=100)
     price = models.PositiveSmallIntegerField()
@@ -66,7 +66,7 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractUser):
     username = None
-    email = models.EmailField(_('email address'), unique=True)
+    email = models.EmailField(('email address'), unique=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
