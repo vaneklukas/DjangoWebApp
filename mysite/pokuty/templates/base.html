@@ -54,32 +54,49 @@
         Trénink
       </div>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'indTraining' %}">
-          <i class="fas fa-fw fa-user-circle"></i>
-          <span>Individuální pokuta</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" 
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-dumbbell"></i>
+            <span>Trénink</span>
+        </a>
+        <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{% url 'indTraining' %}">
+              <i class="fas fa-fw fa-user-circle"></i>
+              <span>Individuální pokuta</span>
+            </a>
+              <a class="collapse-item" href="{% url 'teamTraining' %}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Skupinová pokuta</span>
+              </a>
+          </div>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teamTraining' %}">
-          <i class="fas fa-fw fa-users"></i>
-          <span>Skupinová pokuta</span></a>
-      </li>
-     
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+       <!-- Divider -->
+       <hr class="sidebar-divider">
 
-      <!-- Heading Zápas-->
-      <div class="sidebar-heading">
-        Zápas
-      </div>
+       <!-- Heading Zápas-->
+       <div class="sidebar-heading">
+         Zápas
+       </div>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'indMatch' %}">
-          <i class="fas fa-fw fa-user-circle"></i>
-          <span>Individuální pokuta</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'teamMatch' %}">
-          <i class="fas fa-fw fa-users"></i>
-          <span>Skupinová pokuta</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" 
+            aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-volleyball-ball"></i>
+          <span>Zápas</span>
+        </a>
+        <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{% url 'indMatch' %}">
+              <i class="fas fa-fw fa-user-circle"></i>
+              <span>Individuální pokuta</span>
+            </a>
+              <a class="collapse-item" href="{% url 'teamMatch' %}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Skupinová pokuta</span>
+              </a>
+          </div>
+        </div>
       </li>
       
       <!-- Divider -->
@@ -89,32 +106,29 @@
       <div class="sidebar-heading">
         Administrace
       </div>
+       <!-- Nav Item - Pages Collapse Menu Vyúčtování-->
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3" 
+            aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-calculator "  ></i>
+          <span>Vyúčtování</span>
+        </a>
+        <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{% url 'fridge' %}">Lednice</a>
+            <a class="collapse-item" href="{% url 'income' %}" >Příjmy</a>
+            <a class="collapse-item" href="{% url 'expense' %}">Výdaje</a>
+          </div>
+        </div>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'listview' %}">
           <i class="fas fa-fw fa-users"></i>
           <span>Přehled pokut</span></a>
       </li>
-      <!-- Nav Item - Pages Collapse Menu Vyúčtování-->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" 
-            aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-calculator "  ></i>
-          <span>Vyúčtování</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Měsíční vyúčtování:</h6>
-            <a class="collapse-item" href="login.html">Lednice</a>
-            <a class="collapse-item" href="register.html">Uzavřít měsíc</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Pokladna:</h6>
-            <a class="collapse-item" href="404.html">Příjmy</a>
-            <a class="collapse-item" href="blank.html">Výdaje</a>
-          </div>
-        </div>
-      </li>
+     
 
-      <!-- Nav Item - Pages Collapse Menu Admin-->
+      <!-- Nav Item - Pages Collapse Menu Admin
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAppSetting" 
             aria-expanded="true" aria-controls="collapsePages">
@@ -128,7 +142,7 @@
             <a class="collapse-item" href="register.html">Pokuty</a>
           </div>
         </div>
-      </li>
+      </li> -->
       
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

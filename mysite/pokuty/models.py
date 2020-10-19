@@ -24,6 +24,7 @@ class Fridge(models.Model):
 
 class Income(models.Model):
     incomeDate = models.DateField()
+    userID = models.PositiveSmallIntegerField(default=1)
     user = models.CharField(max_length=100)
     price = models.PositiveSmallIntegerField()
 

@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
+
+
 class UserAdminCreationForm(UserCreationForm):
     """
     A Custom form for creating new users.

@@ -1,7 +1,8 @@
 from django.conf.urls import url, include 
 from pokuty.views import dashboard, register, UzivatelViewLogin 
 from pokuty.views import indTraining, teamTraining, indMatch, teamMatch
-from pokuty.views import indsave, teamsave, listview
+from pokuty.views import indsave, teamsave, listview, income, incomeSave
+from pokuty.views import expense, expenseSave, fridge, fridgeSave
 from django.urls import path
 
 urlpatterns = [
@@ -17,5 +18,10 @@ urlpatterns = [
     url(r"^indsave/", indsave, name="indsave"),
     url(r"^teamsave/", teamsave, name="teamsave"),
     url(r"^listview/", listview, name="listview"),
-
+    url(r"^income/", income, name="income"),
+    url(r"^incomesave/", incomeSave, name="incomeSave"),
+    url(r"^expense/", expense, name="expense"),
+    url(r"^expensesave/", expenseSave, name="expenseSave"),
+    url(r"^fridge/", fridge, name="fridge"),
+    url(r"^fridgesave/", fridgeSave, name="fridgeSave"),
 ]

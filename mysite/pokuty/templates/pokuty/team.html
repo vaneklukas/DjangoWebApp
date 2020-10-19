@@ -5,7 +5,9 @@
     <form action="{% url 'teamsave' %}" method='POST'>
      {% csrf_token %}   
         <label for="date">Vyber datum:</label>
+        <br>
         <input type="date" id="date" name="date">
+        <br>
         <label for="penalty">Vyber pokutu:</label>
         <select class="dropdown-header" name="penalty" id="penalty" required=True>
         <option class="dropdown-item" value="">--Prosím vyber pokutu--</option> 
@@ -19,6 +21,7 @@
             <input class="custom-checkbox" type="checkbox" name='user' value={{user.id}}> {{user.first_name}} {{user.last_name}}</input>
             <br>
         {% endfor %}
+        <br>
         <input type="submit" class="btn-block" value="Uložit"/>
     </form>
 </div>

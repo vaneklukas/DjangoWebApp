@@ -7,12 +7,63 @@ from django.utils import dateparse
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import CustomUser, Penalty, PenaltyRecord
+from .models import CustomUser, Penalty, PenaltyRecord, Income, Expense, Fridge
+from django.db.models import Sum
+
+def expense(request):
+    return render(request, "pokuty/expense.html")
+
+def expenseSave(request):
+    selectedDate = request.POST.get('date')
+    price = request.POST.get('price')
+    reason = request.POST.get('reason')
+    new_record = Expense(expenseDate= selectedDate,reason=reason,  
+            price=price)
+    new_record.save()
+    return render(request, "pokuty/dashboard.html")
+
+def fridge(request):
+    users=CustomUser.objects.all()
+    return render(request, "pokuty/fridge.html", {'users':users})
+
+def fridgeSave(request):
+    selectedDate = request.POST.get('date')
+    userid = request.POST.get('user')
+    price = request.POST.get('price')
+    selecteduser = CustomUser.objects.get(id=userid)
+    username = selecteduser.first_name +' '+ selecteduser.last_name
+    new_record = PenaltyRecord(penaltyDate= selectedDate,userId=selecteduser.id, user=username, penaltyName="Lednice", 
+            penaltyPrice=price, payed=False)
+    new_record.save()
+    return render(request, "pokuty/dashboard.html" )
+
+def income(request):
+    users=CustomUser.objects.all()
+    return render(request, "pokuty/income.html", {'users':users})
+
+def incomeSave(request):
+    selectedDate = request.POST.get('date')
+    price = int( request.POST.get('price'))
+    userid = request.POST.get('user')
+    selecteduser = CustomUser.objects.get(id=userid)
+    username = selecteduser.first_name +' '+ selecteduser.last_name
+    new_record = Income(incomeDate= selectedDate,userID=userid, user=username,  
+            price=price)
+    new_record.save()
+    while price > 0:
+        dbrecord= PenaltyRecord.objects.filter(userId=userid).filter(payed=False).first()
+        if dbrecord !=None or int(dbrecord.penaltyPrice) < price :
+            dbrecord.payed = True
+            dbrecord.save()
+            price -= dbrecord.penaltyPrice
+  
+    return render(request, "pokuty/dashboard.html")
 
 def listview(request):
     records = PenaltyRecord.objects.all().filter(payed=False)
-
-    return render(request, "pokuty/listview.html",{'records':records})
+    incomes = Income.objects.all()
+    expenses = Expense.objects.all()
+    return render(request, "pokuty/listview.html",{'records':records, 'incomes':incomes, 'expenses':expenses})
 
 def teamsave(request):
     selectedusers = request.POST.getlist('user')
@@ -78,8 +129,13 @@ def register(request):
 
 @login_required(login_url='login')
 def dashboard(request):
-    
-    return render(request, "pokuty/dashboard.html" )
+    income= Income.objects.aggregate(Sum('price'))
+    expenses= Expense.objects.aggregate(Sum('price'))
+    notpay= PenaltyRecord.objects.filter(payed=False).aggregate(Sum('penaltyPrice'))
+    a= int(income.get('price__sum'))
+    b= int(expenses.get('price__sum'))
+    bank= a - b
+    return render(request, "pokuty/dashboard.html", {'income':income, 'expenses':expenses, 'notpay':notpay, 'bank':bank} )
     
 class UzivatelViewLogin(generic.edit.CreateView):
     form_class = LoginForm
